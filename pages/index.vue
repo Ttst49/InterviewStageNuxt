@@ -1,63 +1,25 @@
 <template>
-  <div>
+  <PresentationText content="Interview du stage chez Kairios"/>
+  <div v-for="(item, idx) in data" :key="item.index">
     <Bento
-        @open-bento="openBento"
-        class="col-3"
-        title="coucou"
-        size="sm"
-        :is-rectangle="false"
-    />
-    <Bento
-        @open-bento="openBento"
-        class="col-3"
-        title="coucou"
-        size="sm"
-        :is-rectangle="true"
-    />
-    <Bento
-        @open-bento="openBento"
-        class="col-3"
-        title="coucou"
-        size="md"
-        :is-rectangle="false"
-    />
-    <Bento
-        @open-bento="openBento"
-        class="col-3"
-        title="coucou"
-        size="md"
-        :is-rectangle="true"
-    />
-    <Bento
-        @open-bento="openBento"
-        class="col-3"
-        title="coucou"
-        size="lg"
-        :is-rectangle="false"
-    />
-    <Bento
-        @open-bento="openBento"
-        class="col-3"
-        title="coucou"
-        size="lg"
-        :is-rectangle="true"
+        v-if="currentIndex >= idx"
+        :class="item.index"
+        :title="item.title"
+        :mini-content="item.miniContent"
+        :full-content="item.fullContent"
+        @click="showNext(idx)"
     />
   </div>
 </template>
 <script setup lang="ts">
-import { defineProps } from 'vue';
-import Bento from "~/components/Bento.vue";
-
-const props = defineProps({
-  visible: {
-    default: false,
-    type: Boolean
+import { ref } from "vue"
+import data from 'assets/json/data.json'
+import PresentationText from "~/components/PresentationText.vue";
+const currentIndex = ref(0);
+const showNext = (idx: number) => {
+  if (idx === currentIndex.value) {
+    currentIndex.value++;
   }
-});
-
-defineEmits(['update:visible']);
-
-
-const openBento = () => {
 };
+
 </script>
