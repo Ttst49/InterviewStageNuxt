@@ -79,6 +79,7 @@ const isFocus = ref(false);
 <style scoped>
 .bento {
   transition: 0.5s ease-out transform, 0.5s ease-out width;
+
 }
 .bento:focus{
   transform: translate(-5px, -5px);
